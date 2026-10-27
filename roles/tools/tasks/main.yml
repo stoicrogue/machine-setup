@@ -1,0 +1,10 @@
+# Tool versions come from ~/.config/mise/config.toml (restored by chezmoi).
+- name: Check for missing mise tools
+  ansible.builtin.command: mise ls --missing
+  register: mise_missing
+  changed_when: false
+  check_mode: false
+
+- name: Install missing mise tools
+  ansible.builtin.command: mise install
+  when: mise_missing.stdout | trim | length > 0

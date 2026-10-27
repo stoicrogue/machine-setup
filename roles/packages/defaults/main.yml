@@ -1,0 +1,32 @@
+# Extras on top of a stock Omarchy install. Edit freely.
+packages:
+  # Apps
+  - brave-bin
+  - ghostty
+  - handbrake
+  - keepassxc
+  - zed
+  - omazed
+  # Media
+  - libdvdcss
+  - gst-libav
+  - gst-plugins-good
+  # Dotfiles, sync, dictation
+  - chezmoi
+  - syncthing
+  - voxtype-bin
+  # Containers
+  - docker
+  - docker-compose
+  # Hardware and firmware
+  - framework-system
+  - fwupd
+  - usbutils
+  - dmidecode
+  - lshw
+  - nvme-cli
+  - smartmontools
+  # NAS
+  - nfs-utils
+  # Fonts
+  - ttf-firacode-nerd

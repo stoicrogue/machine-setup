@@ -1,0 +1,9 @@
+# Copy to vars/local.yml (ignored by git) and fill in.
+# bootstrap.sh asks for these and writes the file for you.
+
+# chezmoi source repo. Leave empty to skip dotfiles.
+dotfiles_repo: ""   # e.g. https://github.com/<you>/dotfiles.git
+
+# NFS share automounted at ~/nas. Leave nas_server empty to skip.
+nas_server: ""      # e.g. 192.168.1.10
+nas_export: ""      # e.g. /mnt/pool/media

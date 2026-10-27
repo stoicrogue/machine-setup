@@ -1,0 +1,5 @@
+- name: Clone and apply dotfiles with chezmoi
+  ansible.builtin.command: chezmoi init --apply {{ dotfiles_repo | quote }}
+  args:
+    creates: "{{ ansible_facts.user_dir }}/.local/share/chezmoi/.git"
+  when: dotfiles_repo | length > 0

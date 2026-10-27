@@ -1,0 +1,4 @@
+# Started at next login. voxtype needs `omarchy voxtype install` first.
+user_services:
+  - syncthing.service
+  - voxtype.service

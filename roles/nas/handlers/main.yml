@@ -1,0 +1,5 @@
+- name: Start NAS automount
+  ansible.builtin.shell: >
+    systemctl daemon-reload &&
+    systemctl start "$(systemd-escape -p --suffix=automount {{ nas_mountpoint | quote }})"
+  become: true

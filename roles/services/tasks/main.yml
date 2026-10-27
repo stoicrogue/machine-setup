@@ -1,0 +1,6 @@
+- name: Enable user services
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    scope: user
+    enabled: true
+  loop: "{{ user_services }}"
