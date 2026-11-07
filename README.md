@@ -47,7 +47,7 @@ things: it never removes or downgrades.
 - **Secrets.** Restore your SSH key by hand, then log in to `gh`, `claude`
   and `codex`. Open your KeePassXC database by hand.
 - **Fingerprint and dictation.** Run `omarchy setup security fingerprint` and
-  `omarchy voxtype install` yourself. Both are interactive.
+  `omarchy install dictation voxtype` yourself. Both are interactive.
 - **Docker group.** Omarchy leaves you out of the `docker` group on purpose,
   because membership is equivalent to root. Use
   `omarchy setup security sudoless docker` if you want it.

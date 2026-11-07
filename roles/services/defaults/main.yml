@@ -1,4 +1,4 @@
-# Started at next login. voxtype needs `omarchy voxtype install` first.
+# Started at next login. voxtype needs `omarchy install dictation voxtype` first.
 user_services:
   - syncthing.service
   - voxtype.service

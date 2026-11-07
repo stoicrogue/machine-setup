@@ -4,5 +4,5 @@
       - "Restore your SSH key to ~/.ssh, then: chmod 600 ~/.ssh/id_*"
       - "Log in to tools: gh auth login, claude, codex"
       - "Fingerprint: omarchy setup security fingerprint"
-      - "Dictation: omarchy voxtype install, then log out and back in"
+      - "Dictation: omarchy install dictation voxtype, then log out and back in"
       - "Open KeePassXC and point it at your database"
