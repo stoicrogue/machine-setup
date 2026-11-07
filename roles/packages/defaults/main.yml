@@ -15,6 +15,13 @@ packages:
   - chezmoi
   - syncthing
   - voxtype-bin
+  # Documents (pandoc + LaTeX for PDF output via xelatex)
+  - pandoc-cli
+  - texlive-xetex
+  - texlive-latexrecommended
+  - texlive-latexextra
+  - texlive-fontsrecommended
+  - texlive-fontsextra
   # Containers
   - docker
   - docker-compose
