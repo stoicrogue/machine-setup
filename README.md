@@ -34,7 +34,7 @@ things: it never removes or downgrades.
 | packages | Installs the extras in `roles/packages/defaults/main.yml`. AUR-only ones (`aur_packages`) are installed by `bootstrap.sh`, and the playbook reports any that are missing |
 | dotfiles | `chezmoi init --apply` from your dotfiles repo (skipped if already set up) |
 | tools | `mise install` for the tools in your chezmoi-managed mise config |
-| comfyui | Clones ComfyUI to `~/ComfyUI` and sets up its uv venv with ROCm PyTorch. The `comfyui` launcher comes from chezmoi |
+| comfyui | Clones ComfyUI to `~/ComfyUI` and sets up its uv venv with ROCm PyTorch. Runs before dotfiles, because chezmoi adds files inside `~/ComfyUI` (the `comfyui` launcher, a README and starter workflows) |
 | services | Enables the user services in `roles/services/defaults/main.yml` |
 | nas | Adds an NFS automount at `~/nas` to fstab |
 | reminders | Prints the manual steps below |

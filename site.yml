@@ -13,9 +13,10 @@
           skip: true
   roles:
     - packages
+    # Before dotfiles: chezmoi puts files inside ~/ComfyUI, and git can't clone into a non-empty dir.
+    - comfyui
     - dotfiles
     - tools
-    - comfyui
     - services
     - nas
     - reminders
