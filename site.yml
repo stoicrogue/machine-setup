@@ -1,6 +1,10 @@
 - name: Set up this machine on top of Omarchy
   hosts: localhost
   pre_tasks:
+    - name: Refuse to run as root
+      ansible.builtin.assert:
+        that: ansible_facts.user_id != 'root'
+        fail_msg: "Run as your own user, without sudo. --ask-become-pass handles the root steps."
     - name: Load local settings
       ansible.builtin.include_vars: "{{ item }}"
       with_first_found:

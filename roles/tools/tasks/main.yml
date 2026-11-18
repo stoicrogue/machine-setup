@@ -7,4 +7,5 @@
 
 - name: Install missing mise tools
   ansible.builtin.command: mise install
-  when: mise_missing.stdout | trim | length > 0
+  # Omarchy's own tools are "(lazy)": they install on first use, so they don't count.
+  when: mise_missing.stdout_lines | reject('search', '\\(lazy\\)') | list | length > 0
