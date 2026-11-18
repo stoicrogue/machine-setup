@@ -31,7 +31,7 @@ things: it never removes or downgrades.
 
 | Role | What |
 |---|---|
-| packages | Installs the extras in `roles/packages/defaults/main.yml` |
+| packages | Installs the extras in `roles/packages/defaults/main.yml`. AUR-only ones (`aur_packages`) are installed by `bootstrap.sh`, and the playbook reports any that are missing |
 | dotfiles | `chezmoi init --apply` from your dotfiles repo (skipped if already set up) |
 | tools | `mise install` for the tools in your chezmoi-managed mise config |
 | services | Enables the user services in `roles/services/defaults/main.yml` |
@@ -46,6 +46,8 @@ things: it never removes or downgrades.
   snapshots.** These are tied to the hardware.
 - **Secrets.** Restore your SSH key by hand, then log in to `gh`, `claude`
   and `codex`. Open your KeePassXC database by hand.
+- **Steam.** Run `omarchy install gaming steam`. It enables multilib and picks
+  the 32-bit graphics drivers for your GPU.
 - **Fingerprint and dictation.** Run `omarchy setup security fingerprint` and
   `omarchy install dictation voxtype` yourself. Both are interactive.
 - **Docker group.** Omarchy leaves you out of the `docker` group on purpose,

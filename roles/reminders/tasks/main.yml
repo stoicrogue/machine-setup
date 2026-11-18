@@ -5,4 +5,10 @@
       - "Log in to tools: gh auth login, claude, codex"
       - "Fingerprint: omarchy setup security fingerprint"
       - "Dictation: omarchy install dictation voxtype, then log out and back in"
+      - "Steam: omarchy install gaming steam (enables multilib and picks GPU drivers)"
       - "Open KeePassXC and point it at your database"
+
+- name: AUR packages still missing
+  ansible.builtin.debug:
+    msg: "Install with: omarchy pkg aur add {{ aur_missing | join(' ') }}"
+  when: aur_missing | default([]) | length > 0

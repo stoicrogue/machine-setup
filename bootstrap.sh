@@ -18,4 +18,9 @@ nas_export: "$nas_export"
 VARS
 fi
 
+# AUR packages need yay, which can't run under Ansible's become, so install
+# them here while sudo can prompt in this terminal.
+mapfile -t aur < <(python3 -c 'import yaml; print("\n".join(yaml.safe_load(open("roles/packages/defaults/main.yml")).get("aur_packages") or []))')
+((${#aur[@]})) && omarchy pkg aur add "${aur[@]}"
+
 ansible-playbook site.yml --ask-become-pass "$@"

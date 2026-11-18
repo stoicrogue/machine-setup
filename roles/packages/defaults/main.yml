@@ -7,7 +7,13 @@ packages:
   - keepassxc
   - zed
   - omazed
+  - claude-desktop
+  - telegram-desktop
+  - kdenlive
+  - xournalpp
   # Media
+  - vlc
+  - vlc-plugin-ffmpeg
   - libdvdcss
   - gst-libav
   - gst-plugins-good
@@ -25,6 +31,10 @@ packages:
   # Containers
   - docker
   - docker-compose
+  - lazydocker
+  # C/C++ toolchain
+  - clang
+  - llvm
   # Hardware and firmware
   - framework-system
   - fwupd
@@ -37,3 +47,9 @@ packages:
   - nfs-utils
   # Fonts
   - ttf-firacode-nerd
+
+# AUR-only packages. The pacman task above can't install these, and yay can't
+# run as root, so bootstrap.sh installs them with `omarchy pkg aur add` before
+# the playbook runs. The playbook only reports any that are missing.
+aur_packages:
+  - warp-terminal-bin
