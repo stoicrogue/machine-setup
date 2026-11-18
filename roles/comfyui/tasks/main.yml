@@ -1,0 +1,43 @@
+# ComfyUI for local image generation, in its own uv venv with ROCm PyTorch.
+# The `comfyui` launcher comes from chezmoi (~/.local/bin/comfyui).
+# Models and LoRAs are not managed here (see the reminders role).
+- name: Clone ComfyUI
+  ansible.builtin.git:
+    repo: "{{ comfyui_repo }}"
+    dest: "{{ comfyui_dir }}"
+    depth: 1
+    update: false
+
+- name: Create the ComfyUI venv
+  ansible.builtin.command: >-
+    mise exec uv -- uv venv --python {{ comfyui_python }} {{ (comfyui_dir + '/.venv') | quote }}
+  args:
+    creates: "{{ comfyui_dir }}/.venv/bin/python"
+
+# Checks that torch actually imports and is a ROCm build, so a half-finished
+# install (the venv is ~20 GB) or a CUDA build gets reinstalled.
+- name: Check for ROCm PyTorch in the venv
+  ansible.builtin.command: >-
+    {{ (comfyui_dir + '/.venv/bin/python') | quote }} -c
+    "import torch; assert torch.version.hip"
+  register: comfyui_torch
+  changed_when: false
+  failed_when: false
+  check_mode: false
+
+# Installed before requirements.txt so its unpinned torch is already satisfied
+# by the ROCm build instead of pulling the CUDA one.
+- name: Install ROCm PyTorch into the venv
+  ansible.builtin.command: >-
+    mise exec uv -- uv pip install --reinstall --python {{ (comfyui_dir + '/.venv') | quote }}
+    torch torchvision torchaudio --index-url {{ comfyui_torch_index | quote }}
+  when: comfyui_torch.rc != 0
+
+- name: Install ComfyUI and ComfyUI-Manager requirements
+  ansible.builtin.command:
+    cmd: >-
+      mise exec uv -- uv pip install --python .venv
+      -r requirements.txt -r manager_requirements.txt
+    chdir: "{{ comfyui_dir }}"
+  register: comfyui_reqs
+  changed_when: "'Installed' in (comfyui_reqs.stdout + comfyui_reqs.stderr)"

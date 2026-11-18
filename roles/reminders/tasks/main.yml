@@ -7,6 +7,7 @@
       - "Dictation: omarchy install dictation voxtype, then log out and back in"
       - "Steam: omarchy install gaming steam (enables multilib and picks GPU drivers)"
       - "Open KeePassXC and point it at your database"
+      - "ComfyUI models: save a Civitai API key to ~/.config/civitai/token (chmod 600), then download checkpoints to ~/ComfyUI/models/checkpoints and LoRAs to ~/ComfyUI/models/loras"
 
 - name: AUR packages still missing
   ansible.builtin.debug:

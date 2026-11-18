@@ -34,6 +34,7 @@ things: it never removes or downgrades.
 | packages | Installs the extras in `roles/packages/defaults/main.yml`. AUR-only ones (`aur_packages`) are installed by `bootstrap.sh`, and the playbook reports any that are missing |
 | dotfiles | `chezmoi init --apply` from your dotfiles repo (skipped if already set up) |
 | tools | `mise install` for the tools in your chezmoi-managed mise config |
+| comfyui | Clones ComfyUI to `~/ComfyUI` and sets up its uv venv with ROCm PyTorch. The `comfyui` launcher comes from chezmoi |
 | services | Enables the user services in `roles/services/defaults/main.yml` |
 | nas | Adds an NFS automount at `~/nas` to fstab |
 | reminders | Prints the manual steps below |
@@ -50,6 +51,8 @@ things: it never removes or downgrades.
   the 32-bit graphics drivers for your GPU.
 - **Fingerprint and dictation.** Run `omarchy setup security fingerprint` and
   `omarchy install dictation voxtype` yourself. Both are interactive.
+- **ComfyUI models.** Checkpoints and LoRAs are large and come from Civitai,
+  which needs an API key. Download them by hand into `~/ComfyUI/models/`.
 - **Docker group.** Omarchy leaves you out of the `docker` group on purpose,
   because membership is equivalent to root. Use
   `omarchy setup security sudoless docker` if you want it.

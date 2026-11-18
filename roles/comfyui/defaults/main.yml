@@ -1,0 +1,6 @@
+comfyui_dir: "{{ ansible_facts.user_dir }}/ComfyUI"
+comfyui_repo: https://github.com/comfyanonymous/ComfyUI.git
+comfyui_python: "3.13"
+# PyTorch build for the Radeon 890M (gfx1150). The wheels bundle their own ROCm
+# runtime, so no system ROCm packages are needed.
+comfyui_torch_index: https://download.pytorch.org/whl/rocm10.0

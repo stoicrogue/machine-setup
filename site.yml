@@ -15,6 +15,7 @@
     - packages
     - dotfiles
     - tools
+    - comfyui
     - services
     - nas
     - reminders
