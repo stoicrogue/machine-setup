@@ -15,6 +15,7 @@
     - packages
     # Before dotfiles: chezmoi puts files inside ~/ComfyUI, and git can't clone into a non-empty dir.
     - comfyui
+    - comfy_studio
     - dotfiles
     - tools
     - services

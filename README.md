@@ -35,6 +35,7 @@ things: it never removes or downgrades.
 | dotfiles | `chezmoi init --apply` from your dotfiles repo (skipped if already set up) |
 | tools | `mise install` for the tools in your chezmoi-managed mise config |
 | comfyui | Clones ComfyUI to `~/ComfyUI` and sets up its uv venv with ROCm PyTorch. Runs before dotfiles, because chezmoi adds files inside `~/ComfyUI` (the `comfyui` launcher, a README and starter workflows) |
+| comfy_studio | Installs Comfy Studio, a small web UI for ComfyUI at http://127.0.0.1:8189, from `~/Projects/comfy-studio` (set `comfy_studio_repo` to clone it). Adds a user service and an app launcher entry; skipped if there is no checkout |
 | services | Enables the user services in `roles/services/defaults/main.yml` |
 | nas | Adds an NFS automount at `~/nas` to fstab |
 | reminders | Prints the manual steps below |

@@ -1,0 +1,5 @@
+# Comfy Studio: a small local web UI for single images on ComfyUI, at http://127.0.0.1:8189.
+# Leave the repo empty to use an existing checkout in comfy_studio_dir without cloning.
+comfy_studio_repo: ""
+comfy_studio_dir: "{{ ansible_facts.user_dir }}/Projects/comfy-studio"
+comfy_studio_port: 8189

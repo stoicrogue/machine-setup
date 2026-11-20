@@ -1,0 +1,45 @@
+# Comfy Studio web UI for ComfyUI. Needs the comfyui role first.
+# Its history, thumbnails and logs live in ~/ComfyUI/user/studio (not in the repo):
+# they contain prompts.
+- name: Clone Comfy Studio
+  ansible.builtin.git:
+    repo: "{{ comfy_studio_repo }}"
+    dest: "{{ comfy_studio_dir }}"
+    update: false
+  when: comfy_studio_repo | length > 0
+
+- name: Check for a Comfy Studio checkout
+  ansible.builtin.stat:
+    path: "{{ comfy_studio_dir }}/pyproject.toml"
+  register: comfy_studio_src
+
+- name: Install Comfy Studio
+  when: comfy_studio_src.stat.exists
+  block:
+    - name: Install Comfy Studio's Python environment
+      ansible.builtin.command:
+        cmd: mise exec uv -- uv sync --frozen
+        chdir: "{{ comfy_studio_dir }}"
+      register: comfy_studio_sync
+      changed_when: "'Installed' in comfy_studio_sync.stderr"
+
+    - name: Install the Comfy Studio user service
+      ansible.builtin.template:
+        src: comfy-studio.service.j2
+        dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/comfy-studio.service"
+        mode: "0644"
+      notify: Restart comfy-studio
+
+    - name: Add Comfy Studio to the app launcher
+      ansible.builtin.template:
+        src: comfy-studio.desktop.j2
+        dest: "{{ ansible_facts.user_dir }}/.local/share/applications/comfy-studio.desktop"
+        mode: "0644"
+
+    - name: Enable and start Comfy Studio
+      ansible.builtin.systemd_service:
+        name: comfy-studio.service
+        scope: user
+        enabled: true
+        state: started
+        daemon_reload: true

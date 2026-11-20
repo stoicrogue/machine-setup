@@ -1,0 +1,6 @@
+- name: Restart comfy-studio
+  ansible.builtin.systemd_service:
+    name: comfy-studio.service
+    scope: user
+    state: restarted
+    daemon_reload: true

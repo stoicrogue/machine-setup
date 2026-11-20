@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+[Unit]
+Description=Comfy Studio web UI for ComfyUI (http://127.0.0.1:{{ comfy_studio_port }})
+
+[Service]
+Type=simple
+ExecStart={{ comfy_studio_dir }}/.venv/bin/comfy-studio
+Environment=STUDIO_PORT={{ comfy_studio_port }}
+Restart=on-failure
+RestartSec=5
+# ComfyUI can be started from the UI. Stop only the web server on restart/stop,
+# so a render in progress isn't killed along with it.
+KillMode=process
+
+[Install]
+WantedBy=default.target
