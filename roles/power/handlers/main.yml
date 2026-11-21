@@ -1,0 +1,5 @@
+# HUP re-reads logind.conf.d. A restart would end the desktop session.
+- name: Reload logind
+  ansible.builtin.command: systemctl kill -s HUP systemd-logind
+  become: true
+  changed_when: true

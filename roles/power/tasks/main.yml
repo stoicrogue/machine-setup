@@ -1,0 +1,14 @@
+# Closing the lid on AC power keeps the laptop awake (it still suspends on
+# battery). Omarchy's lid handler still locks the screen.
+- name: Don't suspend on lid close while on external power
+  ansible.builtin.copy:
+    dest: /etc/systemd/logind.conf.d/30-lid-external-power.conf
+    content: |
+      [Login]
+      # Stay awake with the lid closed while on AC power; still suspend on battery.
+      HandleLidSwitchExternalPower=ignore
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  notify: Reload logind
